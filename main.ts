@@ -9,11 +9,16 @@ function get_words() {
   var ul = document.createElement('ul');
   var wl = document.getElementById('main');
   var header = document.createElement('p');
-  header.innerHTML = 'Words until '+yesterday;
+  header.innerHTML = 'Words until '+yesterday+'. Click each word to search '+
+                     'jisho (opens in new tab).';
   wl.appendChild(header);
   for (var i=0; i<index; i++) {
     var li = document.createElement('li');
-    li.innerHTML = WORDS[i];
+    var lnk = document.createElement('a');
+    lnk.innerHTML = WORDS[i];
+    lnk.setAttribute('href', 'https://jisho.org/search/'+WORDS[i]);
+    lnk.setAttribute('target', '_blank');
+    li.appendChild(lnk);
     li.setAttribute('style', 'display:block;');
     ul.appendChild(li);
   }
