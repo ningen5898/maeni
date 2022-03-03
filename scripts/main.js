@@ -8,7 +8,7 @@ function get_words() {
     var ul = document.createElement('ul');
     var wl = document.getElementById('main');
     var header = document.createElement('p');
-    header.innerHTML = 'Words until ' + yesterday + '. Click each word to search ' +
+    header.innerHTML = 'Words until ' + yesterday + '. Click a word to search ' +
         'jisho (opens in new tab).';
     wl.appendChild(header);
     for (var i = 0; i < index; i++) {
