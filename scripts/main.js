@@ -11,6 +11,9 @@ function get_words() {
     header.innerHTML = 'Words until ' + yesterday + '. Click a word to search ' +
         'jisho (opens in new tab).';
     wl.appendChild(header);
+    if (index > WORDS.length) {
+        index = WORDS.length;
+    }
     for (var i = 0; i < index; i++) {
         var li = document.createElement('li');
         var lnk = document.createElement('a');

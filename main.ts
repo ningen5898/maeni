@@ -4,7 +4,7 @@ function get_words() {
   const epochMs = new Date('January 23, 2022 00:00:00').valueOf();
   const now = Date.now();
   const msInDay = 86400000;
-  const index = Math.floor((now - epochMs) / msInDay);
+  let index: number = Math.floor((now - epochMs) / msInDay);
   const yesterday = new Date(now - msInDay);
   var ul = document.createElement('ul');
   var wl = document.getElementById('main');
@@ -12,6 +12,9 @@ function get_words() {
   header.innerHTML = 'Words until '+yesterday+'. Click a word to search '+
                      'jisho (opens in new tab).';
   wl.appendChild(header);
+  if (index > WORDS.length) {
+	  index = WORDS.length;
+  }
   for (var i=0; i<index; i++) {
     var li = document.createElement('li');
     var lnk = document.createElement('a');
