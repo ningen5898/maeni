@@ -28,4 +28,4 @@ function get_words() {
   wl.appendChild(ul);
 }
 
-get_words();
+setTimeout(get_words);
