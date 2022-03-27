@@ -20,14 +20,17 @@ function get_words() {
     var word_date = new Date(epochMs + i*msInDay);
     var word_date_str = word_date.toLocaleDateString(undefined);
     var tr = document.createElement('tr');
+    var td_no = document.createElement('td');
     var td_date = document.createElement('td');
     var td_word = document.createElement('td');
     td_date.innerHTML = word_date_str;
+    td_no.innerHTML = i.toString();
     var jisho_link = document.createElement('a');
     jisho_link.innerHTML = WORDS[i];
     jisho_link.setAttribute('href', 'https://jisho.org/search/'+WORDS[i]);
     jisho_link.setAttribute('target', '_blank');
     td_word.appendChild(jisho_link);
+    tr.appendChild(td_no);
     tr.appendChild(td_date);
     tr.appendChild(td_word);
     words_table.appendChild(tr);
