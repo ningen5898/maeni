@@ -1,11 +1,14 @@
 import { WORDS } from './wordlist.js';
+import { DateTime } from "luxon";
 
 function get_words() {
-  const epochMs = new Date('January 23, 2022 00:00:00').valueOf();
-  const now = Date.now();
+  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const now = DateTime.now().setZone(timezone);
   const msInDay = 86400000;
-  let index: number = Math.floor((now - epochMs) / msInDay);
-  const yesterday = new Date(now - msInDay);
+  const epoch = DateTime.utc(2022, 1, 23);
+  const today = DateTime.utc(now.year, now.month, now.day);
+  let index: number = Math.floor((today.valueOf() - epoch.valueOf()) / msInDay);
+  const yesterday = now.minus({days: 1}).toLocaleString();
   var wl = document.getElementById('date_message');
   var header = document.createElement('p');
   header.innerHTML = 'Words until '+yesterday+'. Click a word to search '+
@@ -17,8 +20,8 @@ function get_words() {
   var words_table = document.getElementById('words_table');
   for (var i=0; i<index; i++) {
     var li = document.createElement('li');
-    var word_date = new Date(epochMs + i*msInDay);
-    var word_date_str = word_date.toLocaleDateString(undefined);
+    var word_date = epoch.plus({days: i});
+    var word_date_str = word_date.toLocaleString();
     var tr = document.createElement('tr');
     var td_no = document.createElement('td');
     var td_date = document.createElement('td');
