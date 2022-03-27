@@ -8,7 +8,7 @@ function get_words() {
   const epoch = DateTime.utc(2022, 1, 23);
   const today = DateTime.utc(now.year, now.month, now.day);
   let index: number = Math.floor((today.valueOf() - epoch.valueOf()) / msInDay);
-  const yesterday = now.minus({days: 1}).toLocaleString();
+  const yesterday = now.minus({days: 1}).toLocaleString(DateTime.DATETIME_FULL);
   var wl = document.getElementById('date_message');
   var header = document.createElement('p');
   header.innerHTML = 'Words until '+yesterday+'. Click a word to search '+
